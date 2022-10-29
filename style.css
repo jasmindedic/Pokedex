@@ -1,0 +1,27 @@
+:root {
+    --default-bg: rgb(171, 168, 164);
+    --Water: rgb(0, 128, 255);
+    --Fire: rgb(255, 75, 75);
+    --Grass: rgb(26, 167, 106);
+    --Electric: rgb(255, 191, 0);
+    --Poison: rgb(153, 0, 255);
+    --Bug: rgb(97, 189, 58);
+    --Flying: rgb(91, 181, 217);
+    --Fairy: rgb(227, 85, 255);
+    --Ground: rgb(144, 93, 72);
+    --Psychic: rgb(255, 106, 0);
+    --Fighting: rgb(105, 105, 105);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+#pokedex {
+    min-height: 50vh;
+    background-color: red;
+    color: #fff;
+}
