@@ -31,6 +31,9 @@
 }
 .search-bar 
 {
+    background-color: rgba(243, 244, 245, 0);
+    border-bottom-left-radius: 100px ;
+    border-bottom-right-radius: 100px ;
     
     position: fixed;
     top: 0;
@@ -39,7 +42,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 50;    
+    z-index: 50;  
+    background: rgba(255,255,255,0.15);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.075);  
     
 }
 
@@ -94,7 +101,7 @@
     height: 30px;
     border-radius: 20px;
     border: 0;
-    background-color: aqua;
+    background-color: rgb(255, 255, 255);
 }
 
 .pokemonGens
@@ -106,48 +113,37 @@
 
 }
 
-
-
-/* .details
-{
-    z-index: 5;
-    position:fixed;
-    height: 100vh;
-    width: 100vw;
-     background-color: ;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.049);
-    -webkit-backdrop-filter: blur(12px);
-backdrop-filter: blur(12px);
-border: 1px solid rgba(255, 255, 255, 0.071);
-}
-
-.details img 
-{
-    object-fit: contain;
-    height: 400px;
-}
-
-.stats 
-{
-    display: flex;
-} */
-
-
-
-
-
-
-
-
 .pokemonGens button
 {
     margin-left: 10px;
     margin-top: 10px;
+    height: 100px;
+    width: 100px;
     cursor: pointer;
+    background-image: url(img/pokeball-icon-nav.png);
+    background-size: contain;
+    background-color: rgb(255, 255, 255);
+    background-repeat: no-repeat;
+    border-radius: 100%;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+
 }
+.pokemonGens button:hover 
+{
+    transform: scale(1.08);
+    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.4);
+    transition: 0.2s;
+}
+.pokemonGens button img 
+{
+    object-fit: contain;
+    height: 100px;
+}
+
 #pokedex {
     min-height: 50vh;
     
@@ -156,7 +152,7 @@ border: 1px solid rgba(255, 255, 255, 0.071);
 
 .pokemon-card
 {
-    margin-top: 31px;
+    margin-top: 45px;
     background-color: rgb(23, 160, 98);
     background-image: url(img/pngfind.com-pokeball-png-1230253.png);
     background-repeat: no-repeat;
@@ -183,32 +179,6 @@ border: 1px solid rgba(255, 255, 255, 0.071);
 {
     font-size: 30px;
 }
-
-.dont-exist
-{
-    margin-top: 60px;
-    background-color: rgb(142, 149, 151);
-    background-image: url(img/pngfind.com-pokeball-png-1230253.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    position: relative;
-    
-    display: flex;
-    flex-direction: column;
-    
-    align-items: center;
-    gap: 25px;
-    width: 400px;
-    height:  400px;
-    
-    border-radius: 180%;
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
-    padding: 25px 30px;
-    cursor: pointer;
-    transition: 0.7s;
-}
-
 
 .dont-exist img
 {
@@ -255,8 +225,9 @@ border: 1px solid rgba(255, 255, 255, 0.071);
 {
     position: absolute;
     bottom: 15%;
-    background-color: rgb(51, 116, 116);
+    background-color: rgba(51, 116, 116, 0);
     border-radius: 20px;
+    border: solid 2px;
     width: 40%;
     text-align: center;
     height: 24px;
@@ -269,35 +240,16 @@ border: 1px solid rgba(255, 255, 255, 0.071);
     justify-content: center;
     gap: 20px;
     min-height: 50vh;
-    background-color: rgba(87, 87, 87, 0.673);
+    /* background-color: rgba(63, 84, 168, 0.673); */
+    background-image: url(img/landscape-tree.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
     color: #fff;
     padding: 30px 40px 110px 40px;
     padding-top: 150px;
     
 }
-
- .main-bg2
-{ 
-   position: absolute;
-   
-   top: 0;
-   right: 0;
-   left: 0;
-   bottom: 0;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-    
-    /* background-color: rgba(87, 87, 87, 0.673); */
-    color: #fff;
-    
-
-} 
-
-
-
-
-
 
 
 /* Styling for clicked pokemon */
@@ -312,9 +264,9 @@ border: 1px solid rgba(255, 255, 255, 0.071);
     display: flex;
     flex-direction: column;
     background: rgba(75, 82, 94, 0.385);
--webkit-backdrop-filter: blur(13px);
-backdrop-filter: blur(13px);
-border: 1px solid rgba(255,255,255,0.075);
+    -webkit-backdrop-filter: blur(13px);
+    backdrop-filter: blur(13px);
+    border: 1px solid rgba(255,255,255,0.075);
 }
 
 .center 
@@ -351,7 +303,7 @@ border: 1px solid rgba(255,255,255,0.075);
 
 .currentimage 
 {
-    background-color: rgb(157, 31, 31);
+    background-image: url(img/wiese-sunset.jpg);
     height: 50%;
     width: 50%;
     margin-top: 20px;
@@ -370,22 +322,12 @@ border: 1px solid rgba(255,255,255,0.075);
     align-items: center;
 }
 
-.popUp-down
-{
-
-}
-
 .d-none 
 {
     display: none;
 }
 
-.basic-info
-{
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-}
+
 
 .buttons i 
 {
@@ -402,4 +344,37 @@ border: 1px solid rgba(255,255,255,0.075);
 .buttons i:hover {
     transform: scale(1.1);
     transition: 125ms;
+}
+
+
+.stats-container 
+{
+    display: flex;
+    margin-top: 1rem;
+    gap: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    position: relative;
+}
+
+.weight 
+{
+    display: flex;
+}
+
+#myProgress 
+{
+    width: 100%;
+    background-color: grey;
+    border-radius: 1rem;
+    position: absolute;
+    left: 86px;
+    width: 80%;
+  }
+
+  #myBar 
+  {
+    height: 100%;
+    background-color: rgb(37, 116, 37);
+    border-radius: 1rem;
 }

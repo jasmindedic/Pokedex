@@ -33,14 +33,14 @@ function loadHeader()
         </form>
     
         <div class="pokemonGens">
-            <button onclick="loadGen1()">Generation 1</button>
-            <button onclick="loadGen2()">Generation 2</button>
-            <button onclick="loadGen3()">Generation 3</button>
-            <button onclick="loadGen4()">Generation 4</button>
-            <button onclick="loadGen5()">Generation 5</button>
-            <button onclick="loadGen6()">Generation 6</button>
-            <button onclick="loadGen7()">Generation 7</button>
-            <button onclick="loadGen8()">Generation 8</button>
+            <button onclick="loadGen1()"><span> Generation</span> <span> 1</span></button>
+            <button onclick="loadGen2()"><span> Generation</span> <span> 2</span></button>
+            <button onclick="loadGen3()"><span> Generation</span> <span> 3</span></button>
+            <button onclick="loadGen4()"><span> Generation</span> <span> 4</span></button>
+            <button onclick="loadGen5()"><span> Generation</span> <span> 5</span></button>
+            <button onclick="loadGen6()"><span> Generation</span> <span> 6</span></button>
+            <button onclick="loadGen7()"><span> Generation</span> <span> 7</span></button>
+            <button onclick="loadGen8()"><span> Generation</span> <span> 8</span></button>
             
         </div> `
 
@@ -75,10 +75,9 @@ async function loadPokemon()
         let response = await fetch(url);
         currentPokemon = await response.json();
         pokemonList.push(currentPokemon);
-        console.log("Loaded Pokemon", currentPokemon);
-    
+        console.log("Loaded Pokemon", currentPokemon);  
         
-         
+           
     }    
     
 }
@@ -87,7 +86,7 @@ async function loadPokemon()
 async function loadGen1() 
 {    
     
-    x = 10;
+    x = 151;
    
     getId('header').innerHTML = ` `;
     loadHeaderLoading();
@@ -99,13 +98,14 @@ async function loadGen1()
         let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}`;
         let response = await fetch(url);
         currentPokemon = await response.json();
-        curerntType = currentPokemon['types']['0']['type']['name']
+        currentType = currentPokemon['types']['0']['type']['name']
 
         console.log("Loaded Pokemon", currentPokemon);
     
        
          renderPokemonInfo(i); 
-         bgColor(curerntType, i)
+         bgColor(currentType, i)
+         
     }    
 
     loadHeader(); // prevents spamming buttons
@@ -137,7 +137,7 @@ async function loadGen2()
     
         
          renderPokemonInfo(i); 
-         bgColor(curerntType, i)
+         bgColor(currentType, i)
          
     }
 
@@ -166,7 +166,7 @@ async function loadGen3()
         
         
         renderPokemonInfo(i); 
-        bgColor(curerntType, i)
+        bgColor(currentType, i)
     } 
     loadHeader();
 }
@@ -193,7 +193,7 @@ async function loadGen4()
     
         
         renderPokemonInfo(i); 
-        bgColor(curerntType, i)
+        bgColor(currentType, i)
     } 
     loadHeader();
 }
@@ -220,7 +220,7 @@ async function loadGen5()
     
         
          renderPokemonInfo(i); 
-         bgColor(curerntType, i)
+         bgColor(currentType, i)
     } 
     loadHeader();
     
@@ -248,7 +248,7 @@ async function loadGen6()
     
         
          renderPokemonInfo(i); 
-         bgColor(curerntType, i)
+         bgColor(currentType, i)
     } 
     loadHeader();
 }
@@ -274,7 +274,7 @@ async function loadGen7()
     
         
          renderPokemonInfo(i); 
-         bgColor(curerntType, i)
+         bgColor(currentType, i)
     } 
     loadHeader();
 }
@@ -300,7 +300,7 @@ async function loadGen8()
     
         
          renderPokemonInfo(i); 
-         bgColor(curerntType, i)
+         bgColor(currentType, i)
     } 
     loadHeader();
 }
@@ -319,22 +319,26 @@ function capitalizeFirstLetter(string)
 {
     
 
-    getId('cardBox').innerHTML += `<div onclick="openImage(${i})" id="pokemonCard${i}" class="pokemon-card ">
-
-    <div id="pokemonId" class="poke-id">
-        # ${currentPokemon['id']}
-        <h1 id="pokemonName">${capitalizeFirstLetter(currentPokemon['name'])}</h1>
-    </div>
-
-    <img id="pokemonImage" src="${currentPokemon["sprites"]['other']['official-artwork']['front_default']}">
-
-    <div id="pokemonType" class="pokemon-type">
+    getId('cardBox').innerHTML += /*html*/ `
     
-    ${capitalizeFirstLetter(currentPokemon['types']['0']['type']['name'])}
-   
+    <div onclick="openImage(${i})" id="pokemonCard${i}" class="pokemon-card ">
 
-    </div>
-</div>`;    
+        <div id="pokemonId" class="poke-id">
+            # ${currentPokemon['id']}
+            <h1 id="pokemonName">${capitalizeFirstLetter(currentPokemon['name'])}</h1>
+        </div>
+
+        <img id="pokemonImage" src="${currentPokemon["sprites"]['other']['official-artwork']['front_default']}">
+
+        <div id="pokemonType" class="pokemon-type">
+        
+
+            ${capitalizeFirstLetter(currentPokemon['types']['0']['type']['name'])}
+    
+
+        </div>
+
+    </div>`;    
 }
 
 function pokemonTypes()
@@ -350,79 +354,80 @@ function pokemonTypes()
 
 //COLOR
 
-function bgColor(curerntType, i)
+function bgColor(currentType, i)
 {
-   curerntType = currentPokemon['types']['0']['type']['name']
+   currentType = currentPokemon['types']['0']['type']['name']
 
-    if(curerntType == 'fire')
+    if(currentType == 'fire')
     {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(255, 75, 75)'
+        
+        
     }
-    if(curerntType == 'water')
+    if(currentType == 'water')
     {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(0, 128, 255)'
     }
-    if(curerntType == 'grass')
+    if(currentType == 'grass')
     {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(26, 167, 106)'
     }
-    if(curerntType == 'electric')
+    if(currentType == 'electric')
     {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(255, 191, 0)'
     }
-    if(curerntType == 'psychic')
+    if(currentType == 'psychic')
     {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(255, 106, 0)'
     }
-    if(curerntType == 'ground')
+    if(currentType == 'ground')
     {
-        getId('pokemonCard' + i).style.backgroundColor = 'rgb(255, 75, 75)'
+        getId('pokemonCard' + i).style.backgroundColor = '#C09D74'
     }
-    if(curerntType == 'fighting')
+    if(currentType == 'fighting')
     {
-        getId('pokemonCard' + i).style.backgroundColor = 'rgb(105, 105, 105)'
+        getId('pokemonCard' + i).style.backgroundColor = '#CF887C'
     }
-    if(curerntType == 'fairy')
+    if(currentType == 'fairy')
     {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(227, 85, 255)'
     }
-    if(curerntType == 'normal')
+    if(currentType == 'normal')
     {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(63, 61, 61)'
     }
-    if(curerntType == 'bug')
+    if(currentType == 'bug')
     {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(97, 189, 58)'
     }
-    if(curerntType == 'poison')
+    if(currentType == 'poison')
     {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(153, 0, 255)'
     }
-    if(curerntType == 'dark')
+    if(currentType == 'dark')
     {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(29, 36, 91)'
     }
-    if(curerntType == 'ghost')
+    if(currentType == 'ghost')
     {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(62, 69, 120)'
     }
-    if(curerntType == 'ice')
+    if(currentType == 'ice')
     {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(22, 164, 200)'
     }
-
-   /*  --Water: rgb(0, 128, 255);
-    --Fire: rgb(255, 75, 75);
-    --Grass: rgb(26, 167, 106);
-    --Electric: rgb(255, 191, 0);
-    --Poison: rgb(153, 0, 255);
-    --Bug: rgb(97, 189, 58);
-    --Flying: rgb(91, 181, 217);
-    --Fairy: rgb(227, 85, 255);
-    --Ground: rgb(144, 93, 72);
-    --Psychic: rgb(255, 106, 0);
-    --Fighting: rgb(105, 105, 105); */
+    if(currentType == 'rock')
+    {
+        getId('pokemonCard' + i).style.backgroundColor = '#CFC393'
+    } 
+    if(currentType == 'dragon')
+    {
+        getId('pokemonCard' + i).style.backgroundColor = '#889AD1'
+    } 
 }
+
+
+
 async function filterPokemon()//filter pokemon by names
 {
 
@@ -460,39 +465,23 @@ async function filterPokemon()//filter pokemon by names
       loadHeader();
 }
 
- function pokemonDontExist()
-{
- return   getId('cardBox2').innerHTML = `<div id="dontExist" class="dont-exist">
-
-    <div class="upper-text">
-        
-        <h2>This Pokemon </h2>
-    </div>
-
-
-    <img  src="img/ditto.png">
-
-    <div class="down-text">
-        
-        <h2>has yet to be created</h2>
-    </div>
-    
-    
-    </div>
-</div>`
-}
+ 
 
 
 
 
 
 // Function to make big image onclick visible
-function openImage(i) {
+function openImage(i) 
+{
+    
     let currentImage = pokemonList[i]["sprites"]['other']['official-artwork']['front_default'];
     let currentName  = pokemonList[i]['name'];
     let currentType1 = pokemonList[i]['types']['0']['type']['name'];
-    let currentType2 = pokemonList[i]['types']['1']['type']['name'];
-
+    let attack = pokemonList[i]['stats'][1]['base_stat'];
+    let defense = pokemonList[i]['stats'][2]['base_stat'];
+    let spAtk = pokemonList[i]['stats'][3]['base_stat'];
+    let currentHp = pokemonList[i]['stats'][0]['base_stat'];
     let currentId = pokemonList[i]['id'];
     let currentWeight = pokemonList[i]['weight'];
     let currentHeight = pokemonList[i]['height']
@@ -500,8 +489,8 @@ function openImage(i) {
 
 
     document.querySelector('.bigImageContainer').classList.remove('d-none');
-    document.querySelector('.bigImageContainer').innerHTML = popupTemplate(currentImage,currentName,currentType1,currentId,currentWeight,currentHeight,currentType2, i);
-
+    document.querySelector('.bigImageContainer').innerHTML = popupTemplate(attack, defense, spAtk, currentImage,currentName,currentType1,currentId,currentWeight,currentHeight,currentHp, i);
+   
 }
 
 
@@ -531,46 +520,120 @@ function prevImage(i) {
 }
 
 
-function popupTemplate(currentImage,currentName,currentType1,currentId,currentWeight,currentHeight,currentType2, i) {
-    return /*html*/ ` 
-<div class="currentimage">
+function popupTemplate(attack, defense, spAtk, currentImage,currentName,currentType1,currentId,currentWeight,currentHeight,currentHp, i) 
+{
+    
+    
+    if(currentWeight <= 500)
+    {
+        currentWeight = currentWeight / 10;
+    }
+    else if(currentWeight <= 2000)
+    {
+        currentWeight = currentWeight /30;
+    }
+    else if(currentWeight >= 2001)
+    {
+        currentWeight = currentWeight /60;
+    }
 
-    <div class="image-stats">   
-        <div class="popUp-upper">
-            <div class="center">
-               # ${currentId}
-                <h1 id="pokemonName">${capitalizeFirstLetter(currentName)} </h1>
-            </div>
-            <img id="currentimage" src="${currentImage}">
-            
-        </div>
-    </div>  
-</div>
+    if(attack || defense || spAtk || currentHp < 110)
+    {
+        attack = attack / 2;
+        defense = defense / 2;
+        spAtk = spAtk / 2;
+        currentHp = currentHp / 2;
+    }
+    else 
+    {
+        attack = attack / 3;
+        defense = defense / 3;
+        spAtk = spAtk / 3;
+        currentHp = currentHp / 3;
+    }
+   
 
-<div class="currentstats">
+return /*html*/ ` 
+    <div id="popUpBg${i}" class="currentimage">
 
-    <div class="image-stats">   
-        <div class="popUp-down">
-            
-            <div class="basic-info" >
-               <span> Weight : ${currentWeight}</span>
-               <span>   ${capitalizeFirstLetter(currentType1)}</span>
-            </div>
+        <div class="image-stats">   
+            <div class="popUp-upper">
+                <div class="center">
+                # ${currentId}
+                    <h1 id="pokemonName">${capitalizeFirstLetter(currentName)} </h1>
+                </div>
+                <img id="currentimage" src="${currentImage}">
                 
-            <div class="types basic-info">
-            <span>Height : ${currentHeight}  </span>
-            <span>   ${capitalizeFirstLetter(currentType2)}</span>
-            </div>  
+            </div>
+        </div>  
+    </div>
+
+    <div class="currentstats">
+
+        <div class="image-stats">
+            <div class="popUp-down">
+
+                <div class="stats-container">
+                    <div class="weight">
+                        <p>Weight:</p>
+                    </div>
+                    <div class="basic-info" id="myProgress">
+                        <div id="myBar" style="width: ${currentWeight}%">${currentWeight.toFixed(2)}</div>
+                    </div>
+                </div>
+
+                <div class="stats-container">
+                    <div class="weight">
+                        <p>Height:</p>
+                    </div>
+                    <div class="basic-info" id="myProgress">
+                        <div id="myBar" style="width: ${currentHeight}%">${currentHeight}</div>
+                    </div>
+                </div>
+                <div class="stats-container">
+                    <div class="weight">
+                        <p>HP:</p>
+                    </div>
+                    <div class="basic-info" id="myProgress">
+                        <div id="myBar" style="width: ${currentHp}%">${currentHp}</div>
+                    </div>
+                </div>
+                <div class="stats-container">
+                    <div class="weight">
+                        <p>Attack:</p>
+                    </div>
+                    <div class="basic-info" id="myProgress">
+                        <div id="myBar" style="width: ${attack}%">${attack}</div>
+                    </div>
+                </div>
+                <div class="stats-container">
+                    <div class="weight">
+                        <p>Defense:</p>
+                    </div>
+                    <div class="basic-info" id="myProgress">
+                        <div id="myBar" style="width: ${defense}%">${defense}</div>
+                    </div>
+                </div>
+                <div class="stats-container">
+                    <div class="weight">
+                        <p>Sp.Attack:</p>
+                    </div>
+                    <div class="basic-info" id="myProgress">
+                        <div id="myBar" style="width: ${spAtk}%">${spAtk}</div>
+                    </div>
+                </div>
+
+                </div>
+            </div>
         </div>
-    </div>  
-</div>
 
 
 
-<div class="buttons">
-        <i onclick="prevImage(${i})" class="fa-solid fa-arrow-left-long"></i>
-        <i onclick="closeImage()" class="fa-solid fa-x"></i>
-        <i onclick="nextImage(${i})"  class="fa-solid fa-arrow-right"></i>
+    <div class="buttons">
+            <i onclick="prevImage(${i})" class="fa-solid fa-arrow-left-long"></i>
+            <i onclick="closeImage()" class="fa-solid fa-x"></i>
+            <i onclick="nextImage(${i})"  class="fa-solid fa-arrow-right"></i>
     </div>`;
-        
 }
+
+
