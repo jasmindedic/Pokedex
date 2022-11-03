@@ -80,13 +80,14 @@ async function loadPokemon()
         
          
     }    
+    
 }
 
 
 async function loadGen1() 
 {    
-    x = 4;
-    y = 0;
+    
+    x = 10;
    
     getId('header').innerHTML = ` `;
     loadHeaderLoading();
@@ -98,14 +99,18 @@ async function loadGen1()
         let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}`;
         let response = await fetch(url);
         currentPokemon = await response.json();
-        
+        curerntType = currentPokemon['types']['0']['type']['name']
+
         console.log("Loaded Pokemon", currentPokemon);
     
        
          renderPokemonInfo(i); 
+         bgColor(curerntType, i)
     }    
 
     loadHeader(); // prevents spamming buttons
+    
+   
    
 }
 
@@ -132,6 +137,7 @@ async function loadGen2()
     
         
          renderPokemonInfo(i); 
+         bgColor(curerntType, i)
          
     }
 
@@ -160,7 +166,7 @@ async function loadGen3()
         
         
         renderPokemonInfo(i); 
-         
+        bgColor(curerntType, i)
     } 
     loadHeader();
 }
@@ -187,7 +193,7 @@ async function loadGen4()
     
         
         renderPokemonInfo(i); 
-         
+        bgColor(curerntType, i)
     } 
     loadHeader();
 }
@@ -214,9 +220,10 @@ async function loadGen5()
     
         
          renderPokemonInfo(i); 
-         
+         bgColor(curerntType, i)
     } 
     loadHeader();
+    
 }
 
 
@@ -241,7 +248,7 @@ async function loadGen6()
     
         
          renderPokemonInfo(i); 
-         
+         bgColor(curerntType, i)
     } 
     loadHeader();
 }
@@ -267,7 +274,7 @@ async function loadGen7()
     
         
          renderPokemonInfo(i); 
-         
+         bgColor(curerntType, i)
     } 
     loadHeader();
 }
@@ -293,7 +300,7 @@ async function loadGen8()
     
         
          renderPokemonInfo(i); 
-         
+         bgColor(curerntType, i)
     } 
     loadHeader();
 }
@@ -310,6 +317,8 @@ function capitalizeFirstLetter(string)
 
     function renderPokemonInfo(i)
 {
+    
+
     getId('cardBox').innerHTML += `<div onclick="openImage(${i})" id="pokemonCard${i}" class="pokemon-card ">
 
     <div id="pokemonId" class="poke-id">
@@ -322,10 +331,98 @@ function capitalizeFirstLetter(string)
     <div id="pokemonType" class="pokemon-type">
     
     ${capitalizeFirstLetter(currentPokemon['types']['0']['type']['name'])}
+   
+
     </div>
 </div>`;    
 }
 
+function pokemonTypes()
+{
+    type1 = currentPokemon['types']['0']['type']['name'];
+    type2 = currentPokemon['types']['1']['type']['name'];
+
+    if(type2 = ' ')
+    {
+        
+    }
+}
+
+//COLOR
+
+function bgColor(curerntType, i)
+{
+   curerntType = currentPokemon['types']['0']['type']['name']
+
+    if(curerntType == 'fire')
+    {
+        getId('pokemonCard' + i).style.backgroundColor = 'rgb(255, 75, 75)'
+    }
+    if(curerntType == 'water')
+    {
+        getId('pokemonCard' + i).style.backgroundColor = 'rgb(0, 128, 255)'
+    }
+    if(curerntType == 'grass')
+    {
+        getId('pokemonCard' + i).style.backgroundColor = 'rgb(26, 167, 106)'
+    }
+    if(curerntType == 'electric')
+    {
+        getId('pokemonCard' + i).style.backgroundColor = 'rgb(255, 191, 0)'
+    }
+    if(curerntType == 'psychic')
+    {
+        getId('pokemonCard' + i).style.backgroundColor = 'rgb(255, 106, 0)'
+    }
+    if(curerntType == 'ground')
+    {
+        getId('pokemonCard' + i).style.backgroundColor = 'rgb(255, 75, 75)'
+    }
+    if(curerntType == 'fighting')
+    {
+        getId('pokemonCard' + i).style.backgroundColor = 'rgb(105, 105, 105)'
+    }
+    if(curerntType == 'fairy')
+    {
+        getId('pokemonCard' + i).style.backgroundColor = 'rgb(227, 85, 255)'
+    }
+    if(curerntType == 'normal')
+    {
+        getId('pokemonCard' + i).style.backgroundColor = 'rgb(63, 61, 61)'
+    }
+    if(curerntType == 'bug')
+    {
+        getId('pokemonCard' + i).style.backgroundColor = 'rgb(97, 189, 58)'
+    }
+    if(curerntType == 'poison')
+    {
+        getId('pokemonCard' + i).style.backgroundColor = 'rgb(153, 0, 255)'
+    }
+    if(curerntType == 'dark')
+    {
+        getId('pokemonCard' + i).style.backgroundColor = 'rgb(29, 36, 91)'
+    }
+    if(curerntType == 'ghost')
+    {
+        getId('pokemonCard' + i).style.backgroundColor = 'rgb(62, 69, 120)'
+    }
+    if(curerntType == 'ice')
+    {
+        getId('pokemonCard' + i).style.backgroundColor = 'rgb(22, 164, 200)'
+    }
+
+   /*  --Water: rgb(0, 128, 255);
+    --Fire: rgb(255, 75, 75);
+    --Grass: rgb(26, 167, 106);
+    --Electric: rgb(255, 191, 0);
+    --Poison: rgb(153, 0, 255);
+    --Bug: rgb(97, 189, 58);
+    --Flying: rgb(91, 181, 217);
+    --Fairy: rgb(227, 85, 255);
+    --Ground: rgb(144, 93, 72);
+    --Psychic: rgb(255, 106, 0);
+    --Fighting: rgb(105, 105, 105); */
+}
 async function filterPokemon()//filter pokemon by names
 {
 
@@ -393,15 +490,17 @@ async function filterPokemon()//filter pokemon by names
 function openImage(i) {
     let currentImage = pokemonList[i]["sprites"]['other']['official-artwork']['front_default'];
     let currentName  = pokemonList[i]['name'];
-    let currentTypes = pokemonList[i]['types']['0']['type']['name'];
+    let currentType1 = pokemonList[i]['types']['0']['type']['name'];
+    let currentType2 = pokemonList[i]['types']['1']['type']['name'];
+
     let currentId = pokemonList[i]['id'];
     let currentWeight = pokemonList[i]['weight'];
-
+    let currentHeight = pokemonList[i]['height']
     //document.querySelector('#cardBox').classList.add('d-none'); --
 
 
     document.querySelector('.bigImageContainer').classList.remove('d-none');
-    document.querySelector('.bigImageContainer').innerHTML = popupTemplate(currentImage,currentName,currentTypes,currentId,currentWeight, i);
+    document.querySelector('.bigImageContainer').innerHTML = popupTemplate(currentImage,currentName,currentType1,currentId,currentWeight,currentHeight,currentType2, i);
 
 }
 
@@ -432,20 +531,18 @@ function prevImage(i) {
 }
 
 
-function popupTemplate(currentImage,currentName,currentTypes,currentId,currentWeight, i) {
+function popupTemplate(currentImage,currentName,currentType1,currentId,currentWeight,currentHeight,currentType2, i) {
     return /*html*/ ` 
 <div class="currentimage">
 
     <div class="image-stats">   
         <div class="popUp-upper">
-            <div>
+            <div class="center">
                # ${currentId}
-                <h1 id="pokemonName">${currentName} </h1>
+                <h1 id="pokemonName">${capitalizeFirstLetter(currentName)} </h1>
             </div>
             <img id="currentimage" src="${currentImage}">
-            <div class="types">
-                    ${currentTypes}
-            </div>
+            
         </div>
     </div>  
 </div>
@@ -453,15 +550,17 @@ function popupTemplate(currentImage,currentName,currentTypes,currentId,currentWe
 <div class="currentstats">
 
     <div class="image-stats">   
-        <div class="popUp-upper">
+        <div class="popUp-down">
             
-        <div>
-               Weight : ${currentWeight}
-        </div>
-            
-            <div class="types">
-                   
+            <div class="basic-info" >
+               <span> Weight : ${currentWeight}</span>
+               <span>   ${capitalizeFirstLetter(currentType1)}</span>
             </div>
+                
+            <div class="types basic-info">
+            <span>Height : ${currentHeight}  </span>
+            <span>   ${capitalizeFirstLetter(currentType2)}</span>
+            </div>  
         </div>
     </div>  
 </div>

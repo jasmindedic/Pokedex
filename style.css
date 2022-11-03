@@ -187,7 +187,7 @@ border: 1px solid rgba(255, 255, 255, 0.071);
 .dont-exist
 {
     margin-top: 60px;
-    background-color: rgb(142, 151, 147);
+    background-color: rgb(142, 149, 151);
     background-image: url(img/pngfind.com-pokeball-png-1230253.png);
     background-repeat: no-repeat;
     background-position: center;
@@ -311,23 +311,32 @@ border: 1px solid rgba(255, 255, 255, 0.071);
     align-items: center;
     display: flex;
     flex-direction: column;
-    background: rgba(255,255,255,0.15);
+    background: rgba(75, 82, 94, 0.385);
 -webkit-backdrop-filter: blur(13px);
 backdrop-filter: blur(13px);
 border: 1px solid rgba(255,255,255,0.075);
 }
 
+.center 
+{
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
 
+}
 
 .currentstats
 {
     object-fit: contain;
     height: 300px;
     width: 80%;
-    background-color: rgb(254, 254, 254);
+    background-color: rgb(211, 211, 214);
     height: 50%;
     width: 50%;
     border-bottom-right-radius: 20px;
+    
    
     
 }
@@ -335,18 +344,21 @@ border: 1px solid rgba(255,255,255,0.075);
 #currentimage 
 {
     object-fit: contain;
-    height: 300px;
+    height: 380px;
     width: 80%;
     
 }
 
 .currentimage 
 {
-    background-color: rgb(255, 72, 0);
+    background-color: rgb(157, 31, 31);
     height: 50%;
     width: 50%;
     margin-top: 20px;
     border-top-left-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     
 }
 
@@ -358,17 +370,28 @@ border: 1px solid rgba(255,255,255,0.075);
     align-items: center;
 }
 
+.popUp-down
+{
+
+}
+
 .d-none 
 {
     display: none;
 }
 
-
+.basic-info
+{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
 
 .buttons i 
 {
     font-size: 2rem;
     margin-top: 30px;
+    margin-bottom: 30px;
     margin-left: 20px;
     margin-right: 20px;
     cursor: pointer;
