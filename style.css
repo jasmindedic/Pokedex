@@ -104,6 +104,28 @@
     background-color: rgb(255, 255, 255);
 }
 
+/* Hamuberger Menu  */
+
+.toggle-button {
+    width: 30px;
+    height: 24px;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.toggle-button .bar {
+    width: 100%;
+    height: 3px;
+    background-color: #b2bec3;
+    color: #fff;
+    border-radius: 10px;
+}
+
+
 .pokemonGens
 {
     display: flex;
@@ -117,8 +139,8 @@
 {
     margin-left: 10px;
     margin-top: 10px;
-    height: 100px;
-    width: 100px;
+    height: 84px;
+    width: 84px;
     cursor: pointer;
     background-image: url(img/pokeball-icon-nav.png);
     background-size: contain;
@@ -129,7 +151,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 15px;
+    padding: 12px;
 
 }
 .pokemonGens button:hover 
@@ -239,7 +261,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    min-height: 50vh;
+    min-height: 100vh;
     /* background-color: rgba(63, 84, 168, 0.673); */
     background-image: url(img/landscape-tree.jpg);
     background-attachment: fixed;
@@ -378,3 +400,172 @@
     background-color: rgb(37, 116, 37);
     border-radius: 1rem;
 }
+
+
+
+@media (max-width:800px )
+{
+    .main-bg
+    {
+        padding-top: 260px;
+    }
+    
+    .pokemon-card
+    {
+        width: 339px;
+        height: 339px;
+    }
+
+ 
+    .toggle-button {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+        margin: 0;
+    }
+
+    .nav-logo {
+        display: none;
+        margin: 0;
+        margin-top: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-links ul li {
+        margin: 0;
+        margin-bottom: 1.8rem;
+    }
+
+    .nav-logo.active {
+        display: flex;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    
+}
+
+@media (max-width:430px )
+
+{
+    .main-bg
+    {
+        padding-top: 320px!important;
+    }
+    
+    .pokemon-card
+    {
+        width: 250px!important;
+        height: 250px!important;
+    }
+    .pokemon-card img
+    {
+        width: 120px!important;
+        height: 120px!important;
+        object-fit: contain!important;
+        position: absolute!important;
+        top: 27%!important;
+    }
+
+    .pokemon-card h1
+    {
+        font-size: 23px!important;
+        margin-bottom: 10px!important;
+    }
+
+    .poke-id
+    {
+        font-size: 18px!important;
+    }
+
+    @media (min-width: 500px) {
+        .currentimage {
+            min-width: 28.5rem;
+        }
+
+        .currentstats {
+            min-width: 28.5rem;
+        }
+    }
+
+
+
+    @media (max-width: 450px) {
+        .currentimage {
+            margin-right: 10px;
+            margin-left: 10px;
+            width: 22rem;
+        }
+
+        .currentstats {
+            margin-right: 10px;
+            margin-left: 10px;
+            width: 22rem;
+        }
+
+        #myProgress {
+            width: 70%;
+        }
+    }
+
+
+
+    @media (max-width: 375px) {
+        .currentimage {
+            margin-right: 10px;
+            margin-left: 10px;
+            width: 20rem;
+        }
+
+        .currentstats {
+            margin-right: 10px;
+            margin-left: 10px;
+            width: 20rem;
+        }
+
+        #myProgress {
+            width: 70%;
+        }
+    }
+
+
+    @media (max-width: 300px) {
+        .currentimage {
+            margin-right: 10px;
+            margin-left: 10px;
+            width: 15rem;
+        }
+
+        .currentstats {
+            margin-right: 10px;
+            margin-left: 10px;
+            width: 15rem;
+        }
+
+        #myProgress {
+            width: 60%;
+        }
+    }
+
+
+    @media (max-height: 740px) {
+        #currentimage {
+            height: 270px;
+        }
+    }
+}
+

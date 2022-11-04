@@ -31,7 +31,15 @@ function loadHeader()
         <form onsubmit="onkeydown=filterPokemon(); return false;">
             <input id="searchBar" type="text" placeholder="🔍 Search for pokemon..." required>
         </form>
-    
+
+        <!--Hambuer Menu-->
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        <!--Hambuer Menu-->
+        
         <div class="pokemonGens">
             <button onclick="loadGen1()"><span> Generation</span> <span> 1</span></button>
             <button onclick="loadGen2()"><span> Generation</span> <span> 2</span></button>
@@ -360,9 +368,7 @@ function bgColor(currentType, i)
 
     if(currentType == 'fire')
     {
-        getId('pokemonCard' + i).style.backgroundColor = 'rgb(255, 75, 75)'
-        
-        
+        getId('pokemonCard' + i).style.backgroundColor = 'rgb(255, 75, 75)'   
     }
     if(currentType == 'water')
     {
@@ -454,7 +460,7 @@ async function filterPokemon()//filter pokemon by names
            {
 
             renderPokemonInfo(i);
-
+            bgColor(currentType, i)
            }
           
 
