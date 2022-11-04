@@ -2,9 +2,25 @@ let currentPokemon;
 let pokemonList = [];
 
 
+// Function to toggle hamburger menu
+function toggleHamburger() {
+    // Variables for hamburger menu
+    let headline = document.querySelector(".headline");
+    let searchBar = document.querySelector(".searchBar");
+    let pokemonGens = document.querySelector(".pokemonGens");
+    let mainBg = document.querySelector(".main-bg");
+    let searchbar = document.querySelector(".search-bar");
 
-function getId(id)
-{
+
+    headline.classList.toggle("active");
+    searchBar.classList.toggle("active");
+    pokemonGens.classList.toggle("active");
+    mainBg.classList.toggle("active");
+    searchbar.classList.toggle("active");
+}
+
+
+function getId(id) {
     return document.getElementById(id);
 }
 
@@ -13,27 +29,25 @@ y = 0;
 
 
 
-async function init()
-{   
-     //first loading gen 1 pokemon and then header
-            loadPokemon() 
-    await   loadGen1() 
-            
-           
+async function init() {
+    //first loading gen 1 pokemon and then header
+    loadPokemon()
+    await loadGen1()
+
+
 }
 
-function loadHeader()
-{
+function loadHeader() {
     getId('header').innerHTML =  /*html*/ ` 
 
-        <h1>Pokedex</h1>
+        <h1 class="headline">Pokedex</h1>
 
-        <form onsubmit="onkeydown=filterPokemon(); return false;">
+        <form class="searchBar" onsubmit="onkeydown=filterPokemon(); return false;">
             <input id="searchBar" type="text" placeholder="🔍 Search for pokemon..." required>
         </form>
 
         <!--Hambuer Menu-->
-        <a href="#" class="toggle-button">
+        <a href="#" class="toggle-button" onclick="toggleHamburger()">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
@@ -41,30 +55,29 @@ function loadHeader()
         <!--Hambuer Menu-->
         
         <div class="pokemonGens">
-            <button onclick="loadGen1()"><span> Generation</span> <span> 1</span></button>
-            <button onclick="loadGen2()"><span> Generation</span> <span> 2</span></button>
-            <button onclick="loadGen3()"><span> Generation</span> <span> 3</span></button>
-            <button onclick="loadGen4()"><span> Generation</span> <span> 4</span></button>
-            <button onclick="loadGen5()"><span> Generation</span> <span> 5</span></button>
-            <button onclick="loadGen6()"><span> Generation</span> <span> 6</span></button>
-            <button onclick="loadGen7()"><span> Generation</span> <span> 7</span></button>
-            <button onclick="loadGen8()"><span> Generation</span> <span> 8</span></button>
+            <button onclick="loadGen1()"><span> GEN</span> <span> 1</span></button>
+            <button onclick="loadGen2()"><span> GEN</span> <span> 2</span></button>
+            <button onclick="loadGen3()"><span> GEN</span> <span> 3</span></button>
+            <button onclick="loadGen4()"><span> GEN</span> <span> 4</span></button>
+            <button onclick="loadGen5()"><span> GEN</span> <span> 5</span></button>
+            <button onclick="loadGen6()"><span> GEN</span> <span> 6</span></button>
+            <button onclick="loadGen7()"><span> GEN</span> <span> 7</span></button>
+            <button onclick="loadGen8()"><span> GEN</span> <span> 8</span></button>
             
         </div> `
 
-    
+
 }
 
 // loading gif
-function loadHeaderLoading()
-{
+function loadHeaderLoading() {
     getId('header').innerHTML =  /*html*/ ` 
 
         <img id="loadingGif" src="img/loading-shiggy.gif" alt=""> 
         <h2>LOADING</h2> 
         <div class="block-click">  </div>`
-       
-        
+
+
 }
 
 
@@ -72,60 +85,52 @@ function loadHeaderLoading()
 
 //basic function for load all pokemon
 
-async function loadPokemon() 
-{    
+async function loadPokemon() {
     getId('cardBox').innerHTML = ` `;
 
-    for (let i = 0; i < 905 ; i++)
-
-    {
+    for (let i = 0; i < 905; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}`;
         let response = await fetch(url);
         currentPokemon = await response.json();
         pokemonList.push(currentPokemon);
-        console.log("Loaded Pokemon", currentPokemon);  
-        
-           
-    }    
-    
+        console.log("Loaded Pokemon", currentPokemon);
+
+
+    }
+
 }
 
 
-async function loadGen1() 
-{    
-    
+async function loadGen1() {
+
     x = 151;
-   
+
     getId('header').innerHTML = ` `;
     loadHeaderLoading();
     getId('cardBox').innerHTML = ` `;
 
-    for (let i = 0; i < x ; i++)
-
-    {
+    for (let i = 0; i < x; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}`;
         let response = await fetch(url);
         currentPokemon = await response.json();
         currentType = currentPokemon['types']['0']['type']['name']
 
         console.log("Loaded Pokemon", currentPokemon);
-    
-       
-         renderPokemonInfo(i); 
-         bgColor(currentType, i)
-         
-    }    
+
+
+        renderPokemonInfo(i);
+        bgColor(currentType, i)
+
+    }
 
     loadHeader(); // prevents spamming buttons
-    
-   
-   
+
+
+
 }
 
 
-async function loadGen2()
-
-{
+async function loadGen2() {
     x = 251;
 
     getId('header').innerHTML = ` `;
@@ -133,29 +138,25 @@ async function loadGen2()
     loadHeaderLoading();
 
     getId('cardBox').innerHTML = ` `;
-    
-    for (let i = 151; i < x ; i++)
 
-    {
+    for (let i = 151; i < x; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}`;
         let response = await fetch(url);
         currentPokemon = await response.json();
-        
+
         console.log("Loaded Pokemon", currentPokemon);
-    
-        
-         renderPokemonInfo(i); 
-         bgColor(currentType, i)
-         
+
+
+        renderPokemonInfo(i);
+        bgColor(currentType, i)
+
     }
 
     loadHeader();
 }
 
 
-async function loadGen3()
-
-{
+async function loadGen3() {
     x = 386;
 
     getId('header').innerHTML = ` `;
@@ -163,169 +164,145 @@ async function loadGen3()
     loadHeaderLoading();
 
     getId('cardBox').innerHTML = ` `;
-    
-    for (let i = 251; i < x ; i++)
 
-    {
+    for (let i = 251; i < x; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}`;
         let response = await fetch(url);
         currentPokemon = await response.json();
         console.log("Loaded Pokemon", currentPokemon);
-        
-        
-        renderPokemonInfo(i); 
+
+
+        renderPokemonInfo(i);
         bgColor(currentType, i)
-    } 
+    }
     loadHeader();
 }
 
 
-async function loadGen4()
-
-{
-    x = 493 ;
+async function loadGen4() {
+    x = 493;
 
     getId('header').innerHTML = ` `;
 
     loadHeaderLoading();
 
     getId('cardBox').innerHTML = ` `;
-    
-    for (let i = 386; i < x ; i++)
 
-    {
+    for (let i = 386; i < x; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}`;
         let response = await fetch(url);
         currentPokemon = await response.json();
         console.log("Loaded Pokemon", currentPokemon);
-    
-        
-        renderPokemonInfo(i); 
+
+
+        renderPokemonInfo(i);
         bgColor(currentType, i)
-    } 
+    }
     loadHeader();
 }
 
 
-async function loadGen5()
-
-{
-    x = 649 ;
+async function loadGen5() {
+    x = 649;
 
     getId('header').innerHTML = ` `;
 
     loadHeaderLoading();
 
     getId('cardBox').innerHTML = ` `;
-    
-    for (let i = 493; i < x ; i++)
 
-    {
+    for (let i = 493; i < x; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}`;
         let response = await fetch(url);
         currentPokemon = await response.json();
         console.log("Loaded Pokemon", currentPokemon);
-    
-        
-         renderPokemonInfo(i); 
-         bgColor(currentType, i)
-    } 
+
+
+        renderPokemonInfo(i);
+        bgColor(currentType, i)
+    }
     loadHeader();
-    
+
 }
 
 
-async function loadGen6()
-
-{
-    x = 721  ;
+async function loadGen6() {
+    x = 721;
 
     getId('header').innerHTML = ` `;
 
     loadHeaderLoading();
 
     getId('cardBox').innerHTML = ` `;
-    
-    for (let i = 649; i < x ; i++)
 
-    {
+    for (let i = 649; i < x; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}`;
         let response = await fetch(url);
         currentPokemon = await response.json();
         console.log("Loaded Pokemon", currentPokemon);
-    
-        
-         renderPokemonInfo(i); 
-         bgColor(currentType, i)
-    } 
+
+
+        renderPokemonInfo(i);
+        bgColor(currentType, i)
+    }
     loadHeader();
 }
 
-async function loadGen7()
-
-{
-    x = 809  ;
+async function loadGen7() {
+    x = 809;
 
     getId('header').innerHTML = ` `;
 
     loadHeaderLoading();
 
     getId('cardBox').innerHTML = ` `;
-    
-    for (let i = 721; i < x ; i++)
 
-    {
+    for (let i = 721; i < x; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}`;
         let response = await fetch(url);
         currentPokemon = await response.json();
         console.log("Loaded Pokemon", currentPokemon);
-    
-        
-         renderPokemonInfo(i); 
-         bgColor(currentType, i)
-    } 
+
+
+        renderPokemonInfo(i);
+        bgColor(currentType, i)
+    }
     loadHeader();
 }
 
-async function loadGen8()
-
-{
-    x = 905  ;
+async function loadGen8() {
+    x = 905;
 
     getId('header').innerHTML = ` `;
 
     loadHeaderLoading();
 
     getId('cardBox').innerHTML = ` `;
-    
-    for (let i = 809; i < x ; i++)
 
-    {
+    for (let i = 809; i < x; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}`;
         let response = await fetch(url);
         currentPokemon = await response.json();
         console.log("Loaded Pokemon", currentPokemon);
-    
-        
-         renderPokemonInfo(i); 
-         bgColor(currentType, i)
-    } 
+
+
+        renderPokemonInfo(i);
+        bgColor(currentType, i)
+    }
     loadHeader();
 }
 
 
 
 
-function capitalizeFirstLetter(string) 
-{
+function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-  
 
-    function renderPokemonInfo(i)
-{
-    
+
+function renderPokemonInfo(i) {
+
 
     getId('cardBox').innerHTML += /*html*/ `
     
@@ -346,90 +323,71 @@ function capitalizeFirstLetter(string)
 
         </div>
 
-    </div>`;    
+    </div>`;
 }
 
-function pokemonTypes()
-{
+function pokemonTypes() {
     type1 = currentPokemon['types']['0']['type']['name'];
     type2 = currentPokemon['types']['1']['type']['name'];
 
-    if(type2 = ' ')
-    {
-        
+    if (type2 = ' ') {
+
     }
 }
 
 //COLOR
 
-function bgColor(currentType, i)
-{
-   currentType = currentPokemon['types']['0']['type']['name']
+function bgColor(currentType, i) {
+    currentType = currentPokemon['types']['0']['type']['name']
 
-    if(currentType == 'fire')
-    {
-        getId('pokemonCard' + i).style.backgroundColor = 'rgb(255, 75, 75)'   
+    if (currentType == 'fire') {
+        getId('pokemonCard' + i).style.backgroundColor = 'rgb(255, 75, 75)'
     }
-    if(currentType == 'water')
-    {
+    if (currentType == 'water') {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(0, 128, 255)'
     }
-    if(currentType == 'grass')
-    {
+    if (currentType == 'grass') {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(26, 167, 106)'
     }
-    if(currentType == 'electric')
-    {
+    if (currentType == 'electric') {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(255, 191, 0)'
     }
-    if(currentType == 'psychic')
-    {
+    if (currentType == 'psychic') {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(255, 106, 0)'
     }
-    if(currentType == 'ground')
-    {
+    if (currentType == 'ground') {
         getId('pokemonCard' + i).style.backgroundColor = '#C09D74'
     }
-    if(currentType == 'fighting')
-    {
+    if (currentType == 'fighting') {
         getId('pokemonCard' + i).style.backgroundColor = '#CF887C'
     }
-    if(currentType == 'fairy')
-    {
+    if (currentType == 'fairy') {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(227, 85, 255)'
     }
-    if(currentType == 'normal')
-    {
+    if (currentType == 'normal') {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(63, 61, 61)'
     }
-    if(currentType == 'bug')
-    {
+    if (currentType == 'bug') {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(97, 189, 58)'
     }
-    if(currentType == 'poison')
-    {
+    if (currentType == 'poison') {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(153, 0, 255)'
     }
-    if(currentType == 'dark')
-    {
+    if (currentType == 'dark') {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(29, 36, 91)'
     }
-    if(currentType == 'ghost')
-    {
+    if (currentType == 'ghost') {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(62, 69, 120)'
     }
-    if(currentType == 'ice')
-    {
+    if (currentType == 'ice') {
         getId('pokemonCard' + i).style.backgroundColor = 'rgb(22, 164, 200)'
     }
-    if(currentType == 'rock')
-    {
+    if (currentType == 'rock') {
         getId('pokemonCard' + i).style.backgroundColor = '#CFC393'
-    } 
-    if(currentType == 'dragon')
-    {
+    }
+    if (currentType == 'dragon') {
         getId('pokemonCard' + i).style.backgroundColor = '#889AD1'
-    } 
+    }
 }
 
 
@@ -442,47 +400,44 @@ async function filterPokemon()//filter pokemon by names
     search = search.toLowerCase() //converts big to little chars
     console.log(search);
 
-   
-    getId('cardBox').innerHTML = ' '; 
+
+    getId('cardBox').innerHTML = ' ';
     getId('header').innerHTML = ` `;
     loadHeaderLoading();
-       
-       for (let i = 0; i < 905; i++)
 
-       {
-           let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}`;
-           let response = await fetch(url);
-           currentPokemon = await response.json();
-           console.log("Loaded Pokemon", currentPokemon);
-       
-           
-           if(currentPokemon['name'].toLowerCase().includes(search)) //if search input contains a char matching the user names then filter and show
-           {
+    for (let i = 0; i < 905; i++) {
+        let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}`;
+        let response = await fetch(url);
+        currentPokemon = await response.json();
+        console.log("Loaded Pokemon", currentPokemon);
+
+
+        if (currentPokemon['name'].toLowerCase().includes(search)) //if search input contains a char matching the user names then filter and show
+        {
 
             renderPokemonInfo(i);
             bgColor(currentType, i)
-           }
-          
+        }
 
-       }    
 
-      // work around for preventing spamming the input/enter key ---> loadHeader();
+    }
 
-      loadHeader();
+    // work around for preventing spamming the input/enter key ---> loadHeader();
+
+    loadHeader();
 }
 
- 
+
 
 
 
 
 
 // Function to make big image onclick visible
-function openImage(i) 
-{
-    
+function openImage(i) {
+
     let currentImage = pokemonList[i]["sprites"]['other']['official-artwork']['front_default'];
-    let currentName  = pokemonList[i]['name'];
+    let currentName = pokemonList[i]['name'];
     let currentType1 = pokemonList[i]['types']['0']['type']['name'];
     let attack = pokemonList[i]['stats'][1]['base_stat'];
     let defense = pokemonList[i]['stats'][2]['base_stat'];
@@ -495,8 +450,8 @@ function openImage(i)
 
 
     document.querySelector('.bigImageContainer').classList.remove('d-none');
-    document.querySelector('.bigImageContainer').innerHTML = popupTemplate(attack, defense, spAtk, currentImage,currentName,currentType1,currentId,currentWeight,currentHeight,currentHp, i);
-   
+    document.querySelector('.bigImageContainer').innerHTML = popupTemplate(attack, defense, spAtk, currentImage, currentName, currentType1, currentId, currentWeight, currentHeight, currentHp, i);
+
 }
 
 
@@ -526,40 +481,34 @@ function prevImage(i) {
 }
 
 
-function popupTemplate(attack, defense, spAtk, currentImage,currentName,currentType1,currentId,currentWeight,currentHeight,currentHp, i) 
-{
-    
-    
-    if(currentWeight <= 500)
-    {
+function popupTemplate(attack, defense, spAtk, currentImage, currentName, currentType1, currentId, currentWeight, currentHeight, currentHp, i) {
+
+
+    if (currentWeight <= 500) {
         currentWeight = currentWeight / 10;
     }
-    else if(currentWeight <= 2000)
-    {
-        currentWeight = currentWeight /30;
+    else if (currentWeight <= 2000) {
+        currentWeight = currentWeight / 30;
     }
-    else if(currentWeight >= 2001)
-    {
-        currentWeight = currentWeight /60;
+    else if (currentWeight >= 2001) {
+        currentWeight = currentWeight / 60;
     }
 
-    if(attack || defense || spAtk || currentHp < 110)
-    {
+    if (attack || defense || spAtk || currentHp < 110) {
         attack = attack / 2;
         defense = defense / 2;
         spAtk = spAtk / 2;
         currentHp = currentHp / 2;
     }
-    else 
-    {
+    else {
         attack = attack / 3;
         defense = defense / 3;
         spAtk = spAtk / 3;
         currentHp = currentHp / 3;
     }
-   
 
-return /*html*/ ` 
+
+    return /*html*/ ` 
     <div id="popUpBg${i}" class="currentimage">
 
         <div class="image-stats">   

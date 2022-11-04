@@ -19,6 +19,10 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'Arimo', sans-serif;
+}
+
 
 .dp-off
 {
@@ -120,7 +124,7 @@
 .toggle-button .bar {
     width: 100%;
     height: 3px;
-    background-color: #b2bec3;
+    background-color: #fff;
     color: #fff;
     border-radius: 10px;
 }
@@ -151,7 +155,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 12px;
+    align-items: center;
+    padding: 10px;
 
 }
 .pokemonGens button:hover 
@@ -403,13 +408,15 @@
 
 
 
+/* Media Queries */
 @media (max-width:800px )
 {
+
     .main-bg
     {
-        padding-top: 260px;
+        padding-top: 0px;
     }
-    
+
     .pokemon-card
     {
         width: 339px;
@@ -421,38 +428,31 @@
         display: flex;
     }
 
-    .nav-links {
+    .headline {
         display: none;
         margin: 0;
     }
 
-    .nav-logo {
+    .searchBar {
         display: none;
         margin: 0;
         margin-top: 1.2rem;
         margin-bottom: 2rem;
     }
 
-    .navbar {
-        flex-direction: column;
-        align-items: center;
+    .pokemonGens {
+        display: none;
     }
 
-    .nav-links ul {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .nav-links ul li {
-        margin: 0;
-        margin-bottom: 1.8rem;
-    }
-
-    .nav-logo.active {
+    .headline.active {
         display: flex;
     }
 
-    .nav-links.active {
+    .searchBar.active {
+        display: flex;
+    }
+
+    .pokemonGens.active {
         display: flex;
     }
 
@@ -462,10 +462,7 @@
 @media (max-width:430px )
 
 {
-    .main-bg
-    {
-        padding-top: 320px!important;
-    }
+    
     
     .pokemon-card
     {
@@ -492,6 +489,10 @@
         font-size: 18px!important;
     }
 
+    
+
+}
+    /* Pop Up */
     @media (min-width: 500px) {
         .currentimage {
             min-width: 28.5rem;
@@ -559,13 +560,31 @@
         #myProgress {
             width: 60%;
         }
+
+
+        .pokemon-card {
+            width: 200px!important;
+            height: 200px!important;
     }
+
+    .pokemon-card img {
+        width: 90px!important;
+        height: 90px!important;
+}
+
+    #pokemonName {
+        font-size: 12px !important;
+    }
+}
+    
 
 
     @media (max-height: 740px) {
         #currentimage {
             height: 270px;
         }
+
+      
     }
-}
+
 
