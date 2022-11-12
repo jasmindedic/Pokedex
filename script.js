@@ -1,6 +1,7 @@
 let currentPokemon;
 let pokemonList = [];
-
+x = 151;
+y = 0;
 
 // Function to toggle hamburger menu
 function toggleHamburger() {
@@ -10,7 +11,6 @@ function toggleHamburger() {
     let pokemonGens = document.querySelector(".pokemonGens");
     let mainBg = document.querySelector(".main-bg");
     let searchbar = document.querySelector(".search-bar");
-
 
     headline.classList.toggle("active");
     searchBar.classList.toggle("active");
@@ -24,28 +24,19 @@ function getId(id) {
     return document.getElementById(id);
 }
 
-x = 151;
-y = 0;
-
-
 
 async function init() {
     //first loading gen 1 pokemon and then header
     loadPokemon()
     await loadGen1()
-
-
 }
 
 function loadHeader() {
     getId('header').innerHTML =  /*html*/ ` 
-
         <h1 class="headline">Pokedex</h1>
-
         <form class="searchBar" onsubmit="onkeydown=filterPokemon(); return false;">
             <input id="searchBar" type="text" placeholder="🔍 Search for pokemon..." required>
         </form>
-
         <!--Hambuer Menu-->
         <a href="#" class="toggle-button" onclick="toggleHamburger()">
             <span class="bar"></span>
@@ -53,7 +44,6 @@ function loadHeader() {
             <span class="bar"></span>
         </a>
         <!--Hambuer Menu-->
-        
         <div class="pokemonGens">
             <button onclick="loadGen1()"><span> GEN</span> <span> 1</span></button>
             <button onclick="loadGen2()"><span> GEN</span> <span> 2</span></button>
@@ -63,48 +53,33 @@ function loadHeader() {
             <button onclick="loadGen6()"><span> GEN</span> <span> 6</span></button>
             <button onclick="loadGen7()"><span> GEN</span> <span> 7</span></button>
             <button onclick="loadGen8()"><span> GEN</span> <span> 8</span></button>
-            
         </div> `
-
-
 }
 
 // loading gif
 function loadHeaderLoading() {
     getId('header').innerHTML =  /*html*/ ` 
-
         <img id="loadingGif" src="img/loading-shiggy.gif" alt=""> 
         <h2>LOADING</h2> 
         <div class="block-click">  </div>`
-
-
 }
 
 
-
-
 //basic function for load all pokemon
-
 async function loadPokemon() {
     getId('cardBox').innerHTML = ` `;
-
     for (let i = 0; i < 905; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}`;
         let response = await fetch(url);
         currentPokemon = await response.json();
         pokemonList.push(currentPokemon);
         console.log("Loaded Pokemon", currentPokemon);
-
-
     }
-
 }
 
 
 async function loadGen1() {
-
     x = 151;
-
     getId('header').innerHTML = ` `;
     loadHeaderLoading();
     getId('cardBox').innerHTML = ` `;
@@ -114,42 +89,29 @@ async function loadGen1() {
         let response = await fetch(url);
         currentPokemon = await response.json();
         currentType = currentPokemon['types']['0']['type']['name']
-
         console.log("Loaded Pokemon", currentPokemon);
-
-
         renderPokemonInfo(i);
         bgColor(currentType, i)
-
     }
 
     loadHeader(); // prevents spamming buttons
-
-
-
 }
 
 
 async function loadGen2() {
     x = 251;
-
     getId('header').innerHTML = ` `;
-
     loadHeaderLoading();
-
     getId('cardBox').innerHTML = ` `;
 
     for (let i = 151; i < x; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}`;
         let response = await fetch(url);
         currentPokemon = await response.json();
-
         console.log("Loaded Pokemon", currentPokemon);
-
 
         renderPokemonInfo(i);
         bgColor(currentType, i)
-
     }
 
     loadHeader();
@@ -158,11 +120,8 @@ async function loadGen2() {
 
 async function loadGen3() {
     x = 386;
-
     getId('header').innerHTML = ` `;
-
     loadHeaderLoading();
-
     getId('cardBox').innerHTML = ` `;
 
     for (let i = 251; i < x; i++) {
@@ -170,7 +129,6 @@ async function loadGen3() {
         let response = await fetch(url);
         currentPokemon = await response.json();
         console.log("Loaded Pokemon", currentPokemon);
-
 
         renderPokemonInfo(i);
         bgColor(currentType, i)
@@ -181,11 +139,8 @@ async function loadGen3() {
 
 async function loadGen4() {
     x = 493;
-
     getId('header').innerHTML = ` `;
-
     loadHeaderLoading();
-
     getId('cardBox').innerHTML = ` `;
 
     for (let i = 386; i < x; i++) {
@@ -193,7 +148,6 @@ async function loadGen4() {
         let response = await fetch(url);
         currentPokemon = await response.json();
         console.log("Loaded Pokemon", currentPokemon);
-
 
         renderPokemonInfo(i);
         bgColor(currentType, i)
@@ -204,11 +158,8 @@ async function loadGen4() {
 
 async function loadGen5() {
     x = 649;
-
     getId('header').innerHTML = ` `;
-
     loadHeaderLoading();
-
     getId('cardBox').innerHTML = ` `;
 
     for (let i = 493; i < x; i++) {
@@ -217,22 +168,17 @@ async function loadGen5() {
         currentPokemon = await response.json();
         console.log("Loaded Pokemon", currentPokemon);
 
-
         renderPokemonInfo(i);
         bgColor(currentType, i)
     }
     loadHeader();
-
 }
 
 
 async function loadGen6() {
     x = 721;
-
     getId('header').innerHTML = ` `;
-
     loadHeaderLoading();
-
     getId('cardBox').innerHTML = ` `;
 
     for (let i = 649; i < x; i++) {
@@ -240,7 +186,6 @@ async function loadGen6() {
         let response = await fetch(url);
         currentPokemon = await response.json();
         console.log("Loaded Pokemon", currentPokemon);
-
 
         renderPokemonInfo(i);
         bgColor(currentType, i)
@@ -250,11 +195,8 @@ async function loadGen6() {
 
 async function loadGen7() {
     x = 809;
-
     getId('header').innerHTML = ` `;
-
     loadHeaderLoading();
-
     getId('cardBox').innerHTML = ` `;
 
     for (let i = 721; i < x; i++) {
@@ -262,7 +204,6 @@ async function loadGen7() {
         let response = await fetch(url);
         currentPokemon = await response.json();
         console.log("Loaded Pokemon", currentPokemon);
-
 
         renderPokemonInfo(i);
         bgColor(currentType, i)
@@ -272,11 +213,8 @@ async function loadGen7() {
 
 async function loadGen8() {
     x = 905;
-
     getId('header').innerHTML = ` `;
-
     loadHeaderLoading();
-
     getId('cardBox').innerHTML = ` `;
 
     for (let i = 809; i < x; i++) {
@@ -285,7 +223,6 @@ async function loadGen8() {
         currentPokemon = await response.json();
         console.log("Loaded Pokemon", currentPokemon);
 
-
         renderPokemonInfo(i);
         bgColor(currentType, i)
     }
@@ -293,36 +230,24 @@ async function loadGen8() {
 }
 
 
-
-
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 
-
 function renderPokemonInfo(i) {
-
-
     getId('cardBox').innerHTML += /*html*/ `
-    
     <div onclick="openImage(${i})" id="pokemonCard${i}" class="pokemon-card ">
-
         <div id="pokemonId" class="poke-id">
             # ${currentPokemon['id']}
             <h1 id="pokemonName">${capitalizeFirstLetter(currentPokemon['name'])}</h1>
         </div>
-
         <img id="pokemonImage" src="${currentPokemon["sprites"]['other']['official-artwork']['front_default']}">
-
         <div id="pokemonType" class="pokemon-type">
-        
 
             ${capitalizeFirstLetter(currentPokemon['types']['0']['type']['name'])}
     
-
         </div>
-
     </div>`;
 }
 
@@ -331,12 +256,10 @@ function pokemonTypes() {
     type2 = currentPokemon['types']['1']['type']['name'];
 
     if (type2 = ' ') {
-
     }
 }
 
 //COLOR
-
 function bgColor(currentType, i) {
     currentType = currentPokemon['types']['0']['type']['name']
 
@@ -394,12 +317,9 @@ function bgColor(currentType, i) {
 
 async function filterPokemon()//filter pokemon by names
 {
-
     let search = getId('searchBar').value;
-
     search = search.toLowerCase() //converts big to little chars
     console.log(search);
-
 
     getId('cardBox').innerHTML = ' ';
     getId('header').innerHTML = ` `;
@@ -411,26 +331,15 @@ async function filterPokemon()//filter pokemon by names
         currentPokemon = await response.json();
         console.log("Loaded Pokemon", currentPokemon);
 
-
         if (currentPokemon['name'].toLowerCase().includes(search)) //if search input contains a char matching the user names then filter and show
         {
-
             renderPokemonInfo(i);
             bgColor(currentType, i)
         }
-
-
     }
-
     // work around for preventing spamming the input/enter key ---> loadHeader();
-
     loadHeader();
 }
-
-
-
-
-
 
 
 // Function to make big image onclick visible
@@ -448,10 +357,8 @@ function openImage(i) {
     let currentHeight = pokemonList[i]['height']
     //document.querySelector('#cardBox').classList.add('d-none'); --
 
-
     document.querySelector('.bigImageContainer').classList.remove('d-none');
     document.querySelector('.bigImageContainer').innerHTML = popupTemplate(attack, defense, spAtk, currentImage, currentName, currentType1, currentId, currentWeight, currentHeight, currentHp, i);
-
 }
 
 
@@ -483,7 +390,6 @@ function prevImage(i) {
 
 function popupTemplate(attack, defense, spAtk, currentImage, currentName, currentType1, currentId, currentWeight, currentHeight, currentHp, i) {
 
-
     if (currentWeight <= 500) {
         currentWeight = currentWeight / 10;
     }
@@ -507,7 +413,6 @@ function popupTemplate(attack, defense, spAtk, currentImage, currentName, curren
         currentHp = currentHp / 3;
     }
 
-
     return /*html*/ ` 
     <div id="popUpBg${i}" class="currentimage">
 
@@ -518,16 +423,12 @@ function popupTemplate(attack, defense, spAtk, currentImage, currentName, curren
                     <h1 id="pokemonName">${capitalizeFirstLetter(currentName)} </h1>
                 </div>
                 <img id="currentimage" src="${currentImage}">
-                
             </div>
         </div>  
     </div>
-
     <div class="currentstats">
-
         <div class="image-stats">
             <div class="popUp-down">
-
                 <div class="stats-container">
                     <div class="weight">
                         <p>Weight:</p>
@@ -536,7 +437,6 @@ function popupTemplate(attack, defense, spAtk, currentImage, currentName, curren
                         <div id="myBar" style="width: ${currentWeight}%">${currentWeight.toFixed(2)}</div>
                     </div>
                 </div>
-
                 <div class="stats-container">
                     <div class="weight">
                         <p>Height:</p>
@@ -577,12 +477,9 @@ function popupTemplate(attack, defense, spAtk, currentImage, currentName, curren
                         <div id="myBar" style="width: ${spAtk}%">${spAtk}</div>
                     </div>
                 </div>
-
                 </div>
             </div>
         </div>
-
-
 
     <div class="buttons">
             <i onclick="prevImage(${i})" class="fa-solid fa-arrow-left-long"></i>
